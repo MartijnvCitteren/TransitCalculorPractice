@@ -1,8 +1,6 @@
-import java.lang.reflect.Array;
-
 public class TransitCalculator {
-    public static int daysUsingTransitSystem = 10 ;
-    public static int numberOfIndividualRides = 10;
+    public static int daysUsingTransitSystem;
+    public static int numberOfIndividualRides;
 
 
     //The NYC transit system has three regular fare options
@@ -49,31 +47,42 @@ public class TransitCalculator {
        return ridePrice;
     }
 
+    //Create a String method called getBestFare().
+    // Inside the method, you should use the array of ride prices calculated with getRidePrices() and at least one loop to determine:
+    //  1 the lowest price
+    //  2 the best (corresponding) fare method
     public static String getBestFare(){
+        //creating a corresponding array for the ticket possibilities
+        String[] tickets = new String[3];
+        tickets[0] = "pay-per-ride";
+        tickets[1] = "7-day-unlimited";
+        tickets[2] = "30-day-unlimited";
 
-        double[] bestPrice = Array.get(getRidePrice(),0);
+        double[] price = getRidePrice();
+        double bestPricePerRide = price[0];
+        String bestTicket = tickets[0];
 
-        for(int i = 0; i < getRidePrice().length; i++){
 
+        for(int i = 0; i < price.length; i++){
+            if(price[i]<bestPricePerRide){
+                bestPricePerRide = price[i];
+                bestTicket = tickets[i];
+            }
         }
+        String bestChoise = "The best ticket for you is the " + bestTicket + " option. With this ticket the average ride" +
+                " price will be $ " + bestPricePerRide + ",-.";
 
-        return bestPrice;
-    }
-*/
-
-//creating a toString-method to test array functionality
-    public String toString(){
-
-        return null;
+        return bestChoise;
     }
 
 
 
     public static void main(String[] args) {
-        TransitCalculator touristA = new TransitCalculator(15, 20);
-        touristA.unlimited7Price();
+        TransitCalculator input = new TransitCalculator(13, 100);
 
-        System.out.println(unlimited7Price());
+        System.out.println(getBestFare());
+
+
 
     }
 }
