@@ -1,3 +1,7 @@
+// CodeCademy excercise to build a transit calculator.
+
+import java.util.Scanner;
+
 public class TransitCalculator {
     public static int daysUsingTransitSystem;
     public static int numberOfIndividualRides;
@@ -5,8 +9,8 @@ public class TransitCalculator {
 
     //The NYC transit system has three regular fare options
     public static double perRidePrice = 2.75;
-    public static double sevenDayPrice = 33.00;
-    public static double thirtyDayPrice = 127.00;
+    public static double sevenDayPrice = 32.00;
+    public static double thirtyDayPrice = 115.00;
 
 
     //Build a class constructor for TransitCalculator that accepts the number of days and rides...
@@ -78,7 +82,16 @@ public class TransitCalculator {
 
 
     public static void main(String[] args) {
-        TransitCalculator input = new TransitCalculator(13, 100);
+        Scanner daysInRotterdam = new Scanner(System.in);
+        System.out.println("How many days do you stay in Rotterdam?");
+        int days = daysInRotterdam.nextInt();
+
+        Scanner expectedRides = new Scanner(System.in);
+        System.out.println("How many train & metro rides do you expect taking during your Stay?");
+        int rides = expectedRides.nextInt();
+
+
+        TransitCalculator input = new TransitCalculator(days, rides);
 
         System.out.println(getBestFare());
 
